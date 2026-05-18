@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delou Bathrooms</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    background: #1A110C;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 2.2rem 3.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: #1A110C;
+  }
+  .nav-logo {
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(232,222,204,0.5); text-decoration: none;
+    cursor: pointer; transition: color 0.4s ease;
+  }
+  .nav-logo:hover { color: rgba(232,222,204,0.7); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(232,222,204,0.35); text-decoration: none;
+    cursor: pointer; transition: color 0.4s ease;
+  }
+  .nav-links a:hover { color: rgba(232,222,204,0.7); }
+  .nav-links a.active { color: rgba(232,222,204,0.65); }
+
+  /* PAGES */
+  .page {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+  }
+  .page.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* HOME */
+  #home .center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  #home .title {
+    font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 300;
+    letter-spacing: 0.3em; text-transform: uppercase; color: #E8DECC;
+  }
+  #home .title-sub {
+    font-size: clamp(1.2rem, 3.5vw, 2.4rem); font-weight: 300;
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: rgba(232,222,204,0.5); margin-top: 0.3rem;
+  }
+  #home .divider {
+    width: 60px; height: 1px;
+    background: rgba(196,169,125,0.3); margin: 1.2rem 0;
+  }
+  #home .slogan {
+    font-size: clamp(1rem,2vw,1.35rem); font-weight: 300;
+    font-style: italic; letter-spacing: 0.08em;
+    color: rgba(232,222,204,0.55); margin-top: 0rem;
+  }
+
+  /* ABOUT */
+  #about {
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .about-inner {
+    max-width: 680px; margin: 0 auto;
+    padding: 10rem 2rem 6rem;
+  }
+  .page-label {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: rgba(196,169,125,0.4); margin-bottom: 3rem;
+  }
+  .page-heading {
+    font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 300;
+    color: #E8DECC; line-height: 1.3; margin-bottom: 3.5rem;
+  }
+  .page-text p {
+    font-size: 1.15rem; font-weight: 300;
+    line-height: 1.9; color: rgba(232,222,204,0.55);
+    margin-bottom: 2rem;
+  }
+  .divider-small {
+    width: 40px; height: 1px;
+    background: rgba(196,169,125,0.2); margin: 3rem 0;
+  }
+  .page-quote {
+    font-size: 1.25rem; font-weight: 300; font-style: italic;
+    color: rgba(232,222,204,0.4); line-height: 1.7;
+  }
+
+  /* CONTACT */
+  #contact .center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .contact-heading {
+    font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 300;
+    color: #E8DECC; line-height: 1.3; margin-bottom: 3.5rem;
+  }
+  .contact-divider {
+    width: 40px; height: 1px;
+    background: rgba(196,169,125,0.2); margin: 0.5rem 0 3rem;
+  }
+  .contact-block { margin-bottom: 2.5rem; }
+  .contact-name {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(196,169,125,0.35); margin-bottom: 0.5rem;
+  }
+  .contact-email a {
+    font-size: 1.3rem; font-weight: 300;
+    color: rgba(232,222,204,0.6); text-decoration: none;
+    position: relative; transition: color 0.4s ease;
+  }
+  .contact-email a::after {
+    content: ''; position: absolute;
+    bottom: -3px; left: 0; width: 0; height: 1px;
+    background: rgba(196,169,125,0.4); transition: width 0.4s ease;
+  }
+  .contact-email a:hover { color: #E8DECC; }
+  .contact-email a:hover::after { width: 100%; }
+  .location {
+    font-size: 0.9rem; font-weight: 300; font-style: italic;
+    color: rgba(232,222,204,0.3); margin-top: 1rem;
+  }
+
+  /* ENTRY ANIMATIONS */
+  .anim-fade { opacity: 0; transform: translateY(14px); }
+  .page.active .anim-fade {
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .page.active .anim-fade:nth-child(1) { animation-delay: 0.1s; }
+  .page.active .anim-fade:nth-child(2) { animation-delay: 0.25s; }
+  .page.active .anim-fade:nth-child(3) { animation-delay: 0.4s; }
+  .page.active .anim-fade:nth-child(4) { animation-delay: 0.55s; }
+  .page.active .anim-fade:nth-child(5) { animation-delay: 0.7s; }
+  .page.active .anim-fade:nth-child(6) { animation-delay: 0.85s; }
+  .page.active .anim-fade:nth-child(7) { animation-delay: 1.0s; }
+  .page.active .anim-fade:nth-child(8) { animation-delay: 1.15s; }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" data-page="home">Delou</a>
+  <ul class="nav-links">
+    <li><a data-page="about">About</a></li>
+    <li><a data-page="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="home">
+  <div class="center">
+    <h1 class="title anim-fade">Delou</h1>
+    <p class="title-sub anim-fade">Bathrooms</p>
+    <div class="divider anim-fade"></div>
+    <p class="slogan anim-fade">Vintage design, high-end functionality</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="about">
+  <div class="about-inner">
+    <p class="page-label anim-fade">About Delou</p>
+    <h1 class="page-heading anim-fade">Redefining the modern bathroom through a classical lens.</h1>
+    <div class="page-text">
+      <p class="anim-fade">Delou is a design-led bathroom atelier born from a simple observation: while every other room in the home has evolved into a curated sanctuary, the bathroom remains trapped in clinical monotony. The market is dominated by white glazed porcelain — sterile, uninspired, and fundamentally disconnected from how we actually live.</p>
+      <p class="anim-fade">We set out to fill this void. Our collections draw on the rich heritage of European porcelain craft, reimagined for contemporary life. Each piece is produced by master artisans and arrives in colours that the industry abandoned decades ago: deep chocolate, heritage green, burgundy, warm sand.</p>
+      <p class="anim-fade">Where established brands prioritise mass-manufacturing efficiency over soul, Delou treats every fixture as an architectural statement. Our toilets, basins, and bathtubs carry the proportions and detailing of vintage design, paired with the performance and plumbing standards expected today.</p>
+      <p class="anim-fade">Starting from Stockholm and serving the Nordics, we work with architects, interior designers, and private homeowners who believe the bathroom deserves the same intention as every other room.</p>
+    </div>
+    <div class="divider-small anim-fade"></div>
+    <p class="page-quote anim-fade">For those who refuse the ordinary.</p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="contact">
+  <div class="center">
+    <p class="page-label anim-fade">Contact</p>
+    <h1 class="contact-heading anim-fade">Get in touch</h1>
+    <div class="contact-divider anim-fade"></div>
+    <div class="contact-block anim-fade">
+      <p class="contact-name">Theodor</p>
+      <p class="contact-email"><a href="mailto:theodor@deloubathrooms.com">theodor@deloubathrooms.com</a></p>
+    </div>
+    <div class="contact-block anim-fade">
+      <p class="contact-name">Victoria</p>
+      <p class="contact-email"><a href="mailto:victoria@deloubathrooms.com">victoria@deloubathrooms.com</a></p>
+    </div>
+    <p class="location anim-fade">Stockholm, Sweden</p>
+  </div>
+</div>
+
+<script>
+  const pages = document.querySelectorAll('.page');
+  const links = document.querySelectorAll('[data-page]');
+
+  function navigate(target) {
+    // Reset animations on all pages
+    pages.forEach(p => {
+      p.classList.remove('active');
+      p.querySelectorAll('.anim-fade').forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight; // trigger reflow
+        el.style.animation = '';
+      });
+    });
+
+    // Activate target
+    setTimeout(() => {
+      document.getElementById(target).classList.add('active');
+    }, 50);
+
+    // Update nav active state
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === target);
+    });
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigate(link.dataset.page);
+    });
+  });
+</script>
+</body>
+</html>
