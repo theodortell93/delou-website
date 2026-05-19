@@ -19,7 +19,13 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 2.2rem 3.5rem;
     display: flex; justify-content: space-between; align-items: center;
-    background: #1A110C;
+    background: transparent;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  nav.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
   }
   .nav-logo {
     font-size: 0.85rem; font-weight: 500;
@@ -235,8 +241,21 @@
 <script>
   const pages = document.querySelectorAll('.page');
   const links = document.querySelectorAll('[data-page]');
+  const navEl = document.querySelector('nav');
+  const aboutPage = document.getElementById('about');
+
+  // Hide nav on scroll in About page
+  aboutPage.addEventListener('scroll', () => {
+    navEl.classList.toggle('hidden', aboutPage.scrollTop > 60);
+  });
 
   function navigate(target) {
+    // Reset nav visibility
+    navEl.classList.remove('hidden');
+
+    // Reset scroll position on scrollable pages
+    aboutPage.scrollTop = 0;
+
     // Reset animations on all pages
     pages.forEach(p => {
       p.classList.remove('active');
