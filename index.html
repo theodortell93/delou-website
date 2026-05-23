@@ -190,7 +190,7 @@
     color: rgba(196,169,125,0.25);
   }
 
-  /* Showcase section - sticky bg with text overlay */
+  /* Catalog showcase section */
   .showcase {
     position: relative;
     min-height: 150vh;
@@ -199,50 +199,17 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
   }
-  /* Offset each category differently */
-  .showcase[data-category="basins"] .showcase-bg { padding-right: 25%; }
-  .showcase[data-category="toilets"] .showcase-bg { padding-left: 30%; padding-bottom: 5%; }
-  .showcase[data-category="highcistern"] .showcase-bg { padding-right: 20%; padding-top: 8%; }
-  .showcase[data-category="pedestals"] .showcase-bg { padding-left: 25%; padding-bottom: 10%; }
-  .showcase[data-category="bathtubs"] .showcase-bg { padding-right: 15%; padding-top: 5%; }
-  .showcase-product {
-    position: absolute;
-    opacity: 0;
-    transform: translateX(60px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .showcase-product.active {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .showcase-product.exit-left {
-    opacity: 0;
-    transform: translateX(-60px);
-  }
-  .showcase-product img {
-    max-height: 35vh;
-    width: auto;
-    max-width: 35vw;
-    object-fit: contain;
-    filter: drop-shadow(0 10px 50px rgba(0,0,0,0.3));
-    opacity: 0.18;
-  }
-  .showcase-category {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.55rem; font-weight: 500;
-    letter-spacing: 0.5em; text-transform: uppercase;
-    color: rgba(196,169,125,0.18);
+  .showcase-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    filter: brightness(0.8);
   }
 
-  /* Text that scrolls over the sticky bg */
+  /* Text overlay */
   .showcase-text {
     position: relative;
     z-index: 2;
@@ -258,15 +225,9 @@
     margin-right: auto;
   }
   .showcase-text-inner {
-    max-width: 600px;
+    max-width: 520px;
     width: 100%;
   }
-  /* Shift text to opposite side of product */
-  .showcase[data-category="basins"] .showcase-text-inner { margin-left: auto; margin-right: 0; max-width: 480px; }
-  .showcase[data-category="toilets"] .showcase-text-inner { margin-right: auto; margin-left: 0; max-width: 480px; }
-  .showcase[data-category="highcistern"] .showcase-text-inner { margin-left: auto; margin-right: 0; max-width: 480px; }
-  .showcase[data-category="pedestals"] .showcase-text-inner { margin-right: auto; margin-left: 0; max-width: 480px; }
-  .showcase[data-category="bathtubs"] .showcase-text-inner { margin-left: auto; margin-right: 0; max-width: 480px; }
   .showcase-text-inner p {
     font-size: 1.2rem; font-weight: 300;
     line-height: 2; color: rgba(232,222,204,0.85);
@@ -283,7 +244,9 @@
     border-top: 1px solid rgba(196,169,125,0.08);
     border-bottom: 1px solid rgba(196,169,125,0.08);
   }
-  .showcase-text-inner .spacer { height: 6rem; }
+  /* Alternate text position per section */
+  .showcase:nth-child(odd) .showcase-text-inner { margin-left: auto; margin-right: 0; }
+  .showcase:nth-child(even) .showcase-text-inner { margin-right: auto; margin-left: 0; }
 
   /* CTA */
   .studio-cta {
@@ -330,11 +293,11 @@
   .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
   @media (max-width: 768px) {
-    .showcase-product img { max-height: 30vh; max-width: 60vw; opacity: 0.12; }
+    .showcase-bg img { opacity: 0.12; }
     .showcase-text { padding: 15vh 1.5rem; }
     .showcase-text-inner p { font-size: 1.05rem; }
-    .showcase[data-category] .showcase-bg { padding: 0; }
-    .showcase[data-category] .showcase-text-inner { margin: 0 auto; max-width: 100%; }
+    .showcase:nth-child(odd) .showcase-text-inner,
+    .showcase:nth-child(even) .showcase-text-inner { margin: 0 auto; }
 
     .hamburger { display: block; }
 
@@ -468,13 +431,9 @@
     </div>
 
     <!-- BASINS -->
-    <div class="showcase" data-category="basins">
+    <div class="showcase">
       <div class="showcase-bg">
-        <div class="showcase-product active"><img src="studio/basin-chocolate-console.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/basin-burgundy-console.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/basin-sand-console.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/basin-green-console.png" alt=""></div>
-        <span class="showcase-category">Basins</span>
+        <img src="studio/catalog-basins.png" alt="">
       </div>
       <div class="showcase-text">
         <div class="showcase-text-inner">
@@ -485,68 +444,28 @@
     </div>
 
     <!-- TOILETS -->
-    <div class="showcase" data-category="toilets">
+    <div class="showcase">
       <div class="showcase-bg">
-        <div class="showcase-product active"><img src="studio/toilet-burgundy.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/toilet-chocolate.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/toilet-sand.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/toilet-green.png" alt=""></div>
-        <span class="showcase-category">Toilets</span>
+        <img src="studio/catalog-toilets.png" alt="">
       </div>
       <div class="showcase-text">
         <div class="showcase-text-inner">
           <p>We set out to change that. Our collections draw on the rich heritage of European porcelain craft, reimagined for contemporary life. Each piece is produced by master artisans and arrives in colours that the industry abandoned long ago: deep chocolate, heritage green, burgundy, warm sand.</p>
           <p class="pull-quote">The bathroom has been white for too long. We exist to change that.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- HIGH CISTERN -->
-    <div class="showcase" data-category="highcistern">
-      <div class="showcase-bg">
-        <div class="showcase-product active"><img src="studio/highcistern-chocolate.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/highcistern-burgundy.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/highcistern-sand.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/highcistern-green.png" alt=""></div>
-        <span class="showcase-category">High Cistern</span>
-      </div>
-      <div class="showcase-text">
-        <div class="showcase-text-inner">
           <p>For hospitality projects, we work closely with your design team to develop a bathroom identity that reinforces the narrative of your space. A boutique hotel in Stockholm. A members' club in Copenhagen. A restaurant in Oslo. The bathroom should not break the spell — it should deepen it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATHTUB -->
+    <div class="showcase">
+      <div class="showcase-bg">
+        <img src="studio/catalog-bathtub.png" alt="">
+      </div>
+      <div class="showcase-text">
+        <div class="showcase-text-inner">
           <p>For residential projects, we consult on fixture selection, colour specification, and spatial composition. Whether it is a private home, an apartment, or an estate — we ensure the bathroom carries the same architectural intention as every other room.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- PEDESTAL BASINS -->
-    <div class="showcase" data-category="pedestals">
-      <div class="showcase-bg">
-        <div class="showcase-product active"><img src="studio/basin-chocolate-pedestal.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/basin-burgundy-pedestal.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/basin-sand-pedestal.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/basin-green-pedestal.png" alt=""></div>
-        <span class="showcase-category">Pedestal Basins</span>
-      </div>
-      <div class="showcase-text">
-        <div class="showcase-text-inner">
           <p>For property developers building at scale, we offer volume supply and specification support. Differentiate your projects with bathroom environments that buyers and guests remember long after they leave.</p>
-          <p>Our range includes console and pedestal basins, close-coupled and high cistern toilets, and freestanding bathtubs — all available across our full colour palette. Every fixture is designed to be specified together, creating complete, cohesive bathroom environments.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- BATHTUBS -->
-    <div class="showcase" data-category="bathtubs">
-      <div class="showcase-bg">
-        <div class="showcase-product active"><img src="studio/bath-chocolate.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/bath-burgundy.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/bath-sand.png" alt=""></div>
-        <div class="showcase-product"><img src="studio/bath-green.png" alt=""></div>
-        <span class="showcase-category">Bathtubs</span>
-      </div>
-      <div class="showcase-text">
-        <div class="showcase-text-inner">
-          <p>These are not decorative novelties. They are architectural fixtures — designed with vintage proportions and the detailing of an earlier era, paired with the performance and plumbing standards expected today.</p>
           <p>We are always seeking new collaborations and projects. If you are developing a space that deserves more than white porcelain, we would love to hear from you.</p>
         </div>
       </div>
@@ -634,37 +553,6 @@
       e.preventDefault();
       navigate(link.dataset.page);
     });
-  });
-
-  // Auto-cycle colors in each showcase (every 1.8s)
-  document.querySelectorAll('.showcase').forEach(showcase => {
-    const products = showcase.querySelectorAll('.showcase-product');
-    let current = 0;
-    let interval = null;
-
-    function cycle() {
-      const prev = products[current];
-      prev.classList.remove('active');
-      prev.classList.add('exit-left');
-      current = (current + 1) % products.length;
-      products[current].classList.add('active');
-      setTimeout(() => {
-        prev.classList.remove('exit-left');
-      }, 600);
-    }
-
-    const vis = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !interval) {
-          interval = setInterval(cycle, 1800);
-        } else if (!entry.isIntersecting && interval) {
-          clearInterval(interval);
-          interval = null;
-        }
-      });
-    }, { root: studioPage, threshold: 0.1 });
-
-    vis.observe(showcase);
   });
 
   // Hamburger menu toggle
