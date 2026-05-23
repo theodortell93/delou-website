@@ -163,145 +163,181 @@
   .studio-wrap {
     position: relative;
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 12rem 3rem 6rem;
   }
 
-  /* Scattered images */
-  .s-img {
+  /* Product showcase sections - sticky background */
+  .showcase {
     position: relative;
-    display: block;
+    min-height: 200vh;
+  }
+  .showcase-bg {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .showcase-product {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .showcase-product.active { opacity: 1; }
+  .showcase-product img {
+    max-height: 65vh;
+    width: auto;
+    max-width: 80vw;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 50px rgba(0,0,0,0.4));
+  }
+  .showcase-color-label {
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(196,169,125,0.4);
+    margin-top: 1.5rem;
+  }
+  .showcase-category {
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.5em; text-transform: uppercase;
+    color: rgba(196,169,125,0.2);
+  }
+  /* Color dots */
+  .showcase-dots {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  .showcase-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    opacity: 0.3;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .showcase-dot.active { opacity: 1; transform: scale(1.3); }
+
+  /* Text overlay that scrolls over the sticky bg */
+  .showcase-text-layer {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+    min-height: 200vh;
+    margin-top: -100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 15vh 3rem;
+  }
+  .showcase-text-layer > * { pointer-events: auto; }
+
+  .s-text-block {
+    max-width: 480px;
+    padding: 3rem;
+    background: rgba(26,17,12,0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(196,169,125,0.08);
+    margin-bottom: 40vh;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  .s-img.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .s-img img {
-    display: block;
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 8px 40px rgba(0,0,0,0.3));
-  }
-
-  /* Size variants */
-  .s-img.sm { width: 22%; }
-  .s-img.md { width: 32%; }
-  .s-img.lg { width: 42%; }
-  .s-img.xl { width: 55%; }
-
-  /* Position variants */
-  .s-img.left { margin-right: auto; margin-left: 0; }
-  .s-img.right { margin-left: auto; margin-right: 0; }
-  .s-img.center { margin: 0 auto; }
-  .s-img.off-left { margin-left: 5%; }
-  .s-img.off-right { margin-left: auto; margin-right: 8%; }
-  .s-img.far-right { margin-left: auto; margin-right: 2%; }
-  .s-img.far-left { margin-left: 2%; }
-
-  /* Overlap with negative margins */
-  .s-img.pull-up { margin-top: -6rem; }
-  .s-img.pull-up-sm { margin-top: -3rem; }
-
-  /* Studio text */
-  .s-text {
-    max-width: 520px;
-    padding: 3rem 0;
-    opacity: 0;
-    transform: translateY(20px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .s-text.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .s-text.t-left { margin-right: auto; }
-  .s-text.t-right { margin-left: auto; text-align: right; }
-  .s-text.t-center { margin: 3rem auto; text-align: center; }
-  .s-text p {
-    font-size: 1.15rem; font-weight: 300;
-    line-height: 1.9; color: rgba(232,222,204,0.8);
-    margin-bottom: 1.5rem;
-  }
-  .s-text .label {
-    font-size: 0.7rem; font-weight: 500;
+  .s-text-block.visible { opacity: 1; transform: translateY(0); }
+  .s-text-block.pos-left { margin-right: auto; }
+  .s-text-block.pos-right { margin-left: auto; }
+  .s-text-block.pos-center { margin: 0 auto 40vh; text-align: center; }
+  .s-text-block .label {
+    font-size: 0.65rem; font-weight: 500;
     letter-spacing: 0.4em; text-transform: uppercase;
-    color: rgba(196,169,125,0.55);
-    margin-bottom: 1.5rem;
+    color: rgba(196,169,125,0.6);
+    margin-bottom: 1.2rem;
     display: block;
   }
-
-  /* Hero */
-  .studio-hero-simple {
-    text-align: center;
-    padding-bottom: 5rem;
-    margin-bottom: 3rem;
-    border-bottom: 1px solid rgba(196,169,125,0.1);
+  .s-text-block p {
+    font-size: 1.1rem; font-weight: 300;
+    line-height: 1.85; color: rgba(232,222,204,0.85);
+    margin-bottom: 0;
   }
-  .studio-hero-simple h1 {
+
+  /* Studio hero */
+  .studio-hero-top {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  .studio-hero-top h1 {
     font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300;
     color: #E8DECC; line-height: 1.2;
     letter-spacing: 0.02em;
   }
-  .studio-hero-simple .sub {
+  .studio-hero-top .sub {
     font-size: 1.1rem; font-weight: 300; font-style: italic;
-    color: rgba(232,222,204,0.5); margin-top: 1.5rem;
+    color: rgba(232,222,204,0.45); margin-top: 1.5rem;
+  }
+  .studio-scroll-hint {
+    position: absolute; bottom: 3rem;
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(196,169,125,0.3);
   }
 
-  /* Pull quote */
-  .s-quote {
-    text-align: center;
-    padding: 5rem 0;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+  /* Quote */
+  .s-quote-full {
+    min-height: 60vh;
+    display: flex; justify-content: center; align-items: center;
+    text-align: center; padding: 4rem 3rem;
   }
-  .s-quote.visible { opacity: 1; transform: translateY(0); }
-  .s-quote p {
+  .s-quote-full p {
     font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 300; font-style: italic;
-    color: rgba(232,222,204,0.45); line-height: 1.5;
+    color: rgba(232,222,204,0.4); line-height: 1.5;
+    max-width: 600px;
   }
 
   /* CTA */
   .studio-cta {
     text-align: center;
-    padding: 4rem 0 2rem;
-    border-top: 1px solid rgba(196,169,125,0.1);
-    margin-top: 4rem;
+    padding: 6rem 2rem 8rem;
+    border-top: 1px solid rgba(196,169,125,0.08);
   }
   .studio-cta-label {
-    font-size: 0.75rem; font-weight: 500;
+    font-size: 0.7rem; font-weight: 500;
     letter-spacing: 0.4em; text-transform: uppercase;
-    color: rgba(196,169,125,0.6);
+    color: rgba(196,169,125,0.5);
     margin-bottom: 2.5rem;
   }
   .studio-contact-block { margin-bottom: 1.8rem; }
   .studio-contact-name {
-    font-size: 0.7rem; font-weight: 500;
+    font-size: 0.65rem; font-weight: 500;
     letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(196,169,125,0.5); margin-bottom: 0.3rem;
+    color: rgba(196,169,125,0.4); margin-bottom: 0.3rem;
   }
   .studio-contact-email a {
-    font-size: 1.15rem; font-weight: 300;
-    color: rgba(232,222,204,0.8); text-decoration: none;
+    font-size: 1.1rem; font-weight: 300;
+    color: rgba(232,222,204,0.75); text-decoration: none;
     transition: color 0.4s ease;
-    border-bottom: 1px solid rgba(196,169,125,0.2);
+    border-bottom: 1px solid rgba(196,169,125,0.15);
     padding-bottom: 2px;
   }
   .studio-contact-email a:hover { color: #E8DECC; border-color: rgba(196,169,125,0.5); }
 
   @media (max-width: 768px) {
-    .s-img.sm { width: 40%; }
-    .s-img.md { width: 55%; }
-    .s-img.lg { width: 70%; }
-    .s-img.xl { width: 85%; }
-    .s-img.pull-up { margin-top: -3rem; }
-    .studio-wrap { padding: 8rem 1.5rem 4rem; }
-    .s-text { max-width: 100%; }
+    .showcase-product img { max-height: 50vh; max-width: 90vw; }
+    .s-text-block { max-width: 100%; padding: 2rem; margin-bottom: 30vh; }
+    .showcase-text-layer { padding: 0 1.5rem; }
   }
   .contact-heading {
     font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 300;
@@ -396,80 +432,139 @@
 <div class="page" id="studio">
   <div class="studio-wrap">
 
-    <div class="studio-hero-simple anim-fade">
-      <p class="page-label">Delou Studio</p>
-      <h1>Porcelain in colour for the spaces that matter.</h1>
-      <p class="sub">Working with architects, designers, and developers across the Nordics.</p>
+    <!-- Hero -->
+    <div class="studio-hero-top">
+      <p class="page-label anim-fade">Delou Studio</p>
+      <h1 class="anim-fade">Porcelain in colour for the<br>spaces that matter.</h1>
+      <p class="sub anim-fade">Working with architects, designers, and developers.</p>
+      <p class="studio-scroll-hint anim-fade">Scroll to explore</p>
     </div>
 
-    <div class="s-img lg off-left"><img src="studio/basin-chocolate-console.png" alt=""></div>
-
-    <div class="s-text t-right">
-      <span class="label">For professionals</span>
-      <p>We partner with architects, interior designers, and property developers who understand that the bathroom is not an afterthought — it is architecture. Delou Studio exists to bring coloured porcelain into the spaces they create.</p>
+    <!-- BASINS showcase -->
+    <div class="showcase" data-category="basins">
+      <div class="showcase-bg">
+        <div class="showcase-product active" data-color="chocolate">
+          <img src="studio/basin-chocolate-console.png" alt="">
+          <span class="showcase-color-label">Chocolate</span>
+        </div>
+        <div class="showcase-product" data-color="burgundy">
+          <img src="studio/basin-burgundy-console.png" alt="">
+          <span class="showcase-color-label">Burgundy</span>
+        </div>
+        <div class="showcase-product" data-color="sand">
+          <img src="studio/basin-sand-console.png" alt="">
+          <span class="showcase-color-label">Sand</span>
+        </div>
+        <div class="showcase-product" data-color="green">
+          <img src="studio/basin-green-console.png" alt="">
+          <span class="showcase-color-label">Heritage Green</span>
+        </div>
+        <div class="showcase-dots">
+          <div class="showcase-dot active" style="background:#3D261A;"></div>
+          <div class="showcase-dot" style="background:#6B1A2A;"></div>
+          <div class="showcase-dot" style="background:#D4C4A8;"></div>
+          <div class="showcase-dot" style="background:#4A5A2A;"></div>
+        </div>
+        <span class="showcase-category">Basins</span>
+      </div>
+      <div class="showcase-text-layer">
+        <div class="s-text-block pos-left">
+          <span class="label">For Professionals</span>
+          <p>We partner with architects, interior designers, and property developers who understand that the bathroom is not an afterthought — it is architecture. Delou Studio exists to bring coloured porcelain into the spaces they create.</p>
+        </div>
+        <div class="s-text-block pos-right">
+          <span class="label">Specification Support</span>
+          <p>From first sketch to final installation, we provide full specification support. Priority access to samples, dedicated project pricing, and a palette the industry has long abandoned.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="s-img md far-right"><img src="studio/toilet-burgundy.png" alt=""></div>
-
-    <div class="s-img sm off-left pull-up"><img src="studio/toilet-sand.png" alt=""></div>
-
-    <div class="s-text t-left">
-      <span class="label">Hospitality</span>
-      <p>Hotels, restaurants, members' clubs. We work closely with your design team to develop a bathroom identity that reinforces the narrative of your space. Not an afterthought — a signature.</p>
+    <!-- TOILETS showcase -->
+    <div class="showcase" data-category="toilets">
+      <div class="showcase-bg">
+        <div class="showcase-product active" data-color="burgundy">
+          <img src="studio/toilet-burgundy.png" alt="">
+          <span class="showcase-color-label">Burgundy</span>
+        </div>
+        <div class="showcase-product" data-color="chocolate">
+          <img src="studio/toilet-chocolate.png" alt="">
+          <span class="showcase-color-label">Chocolate</span>
+        </div>
+        <div class="showcase-product" data-color="sand">
+          <img src="studio/toilet-sand.png" alt="">
+          <span class="showcase-color-label">Sand</span>
+        </div>
+        <div class="showcase-product" data-color="green">
+          <img src="studio/toilet-green.png" alt="">
+          <span class="showcase-color-label">Heritage Green</span>
+        </div>
+        <div class="showcase-dots">
+          <div class="showcase-dot active" style="background:#6B1A2A;"></div>
+          <div class="showcase-dot" style="background:#3D261A;"></div>
+          <div class="showcase-dot" style="background:#D4C4A8;"></div>
+          <div class="showcase-dot" style="background:#4A5A2A;"></div>
+        </div>
+        <span class="showcase-category">Toilets</span>
+      </div>
+      <div class="showcase-text-layer">
+        <div class="s-text-block pos-right">
+          <span class="label">Hospitality</span>
+          <p>Hotels, restaurants, members' clubs. We work closely with your design team to develop a bathroom identity that reinforces the narrative of your space. Not an afterthought — a signature.</p>
+        </div>
+        <div class="s-text-block pos-left">
+          <span class="label">Residential</span>
+          <p>Private homes, apartments, and estates. We consult on fixture selection, colour specification, and spatial composition — ensuring the bathroom carries the same architectural intention as every other room.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="s-img xl center"><img src="studio/basin-burgundy-pedestal.png" alt=""></div>
-
-    <div class="s-text t-center">
-      <p>Every fixture is designed with vintage proportions and produced to meet modern performance standards, in a palette the industry has long neglected: deep chocolate, heritage green, burgundy, warm sand.</p>
-    </div>
-
-    <div class="s-img md far-right"><img src="studio/bath-green.png" alt=""></div>
-
-    <div class="s-img sm off-left pull-up-sm"><img src="studio/basin-green-pedestal.png" alt=""></div>
-
-    <div class="s-quote">
+    <!-- Quote -->
+    <div class="s-quote-full">
       <p>"The bathroom has been white for too long. We exist to change that."</p>
     </div>
 
-    <div class="s-img lg off-left"><img src="studio/basin-sand-console.png" alt=""></div>
-
-    <div class="s-text t-right">
-      <span class="label">Residential</span>
-      <p>Private homes, apartments, estates. We consult on fixture selection, colour specification, and spatial composition — ensuring the bathroom carries the same architectural intention as every other room.</p>
+    <!-- BATHTUBS showcase -->
+    <div class="showcase" data-category="bathtubs">
+      <div class="showcase-bg">
+        <div class="showcase-product active" data-color="chocolate">
+          <img src="studio/bath-chocolate.png" alt="">
+          <span class="showcase-color-label">Chocolate</span>
+        </div>
+        <div class="showcase-product" data-color="burgundy">
+          <img src="studio/bath-burgundy.png" alt="">
+          <span class="showcase-color-label">Burgundy</span>
+        </div>
+        <div class="showcase-product" data-color="sand">
+          <img src="studio/bath-sand.png" alt="">
+          <span class="showcase-color-label">Sand</span>
+        </div>
+        <div class="showcase-product" data-color="green">
+          <img src="studio/bath-green.png" alt="">
+          <span class="showcase-color-label">Heritage Green</span>
+        </div>
+        <div class="showcase-dots">
+          <div class="showcase-dot active" style="background:#3D261A;"></div>
+          <div class="showcase-dot" style="background:#6B1A2A;"></div>
+          <div class="showcase-dot" style="background:#D4C4A8;"></div>
+          <div class="showcase-dot" style="background:#4A5A2A;"></div>
+        </div>
+        <span class="showcase-category">Bathtubs</span>
+      </div>
+      <div class="showcase-text-layer">
+        <div class="s-text-block pos-left">
+          <span class="label">Development</span>
+          <p>For property developers building at scale, we offer volume supply of coloured porcelain fixtures. Differentiate your projects with bathroom environments that buyers and guests remember.</p>
+        </div>
+        <div class="s-text-block pos-right">
+          <span class="label">The Palette</span>
+          <p>Deep chocolate, heritage green, burgundy, warm sand — each glaze is developed to carry depth and warmth that white porcelain cannot. Colours that respond to light, age with grace, and belong in rooms designed with intention.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="s-img md center"><img src="studio/toilet-chocolate.png" alt=""></div>
-
-    <div class="s-img sm far-right pull-up"><img src="studio/toilet-green.png" alt=""></div>
-
-    <div class="s-text t-left">
-      <span class="label">Development</span>
-      <p>For property developers building at scale, we offer specification support and volume supply of coloured porcelain fixtures. Differentiate your projects with bathroom environments that buyers and guests remember.</p>
-    </div>
-
-    <div class="s-img xl off-left"><img src="studio/basin-burgundy-console.png" alt=""></div>
-
-    <div class="s-img md far-right pull-up"><img src="studio/bath-burgundy.png" alt=""></div>
-
-    <div class="s-text t-center">
-      <p>We offer the highest quality coloured bathroom porcelain on the European market. Toilets, basins, and bathtubs — each produced by master artisans in a range of glazes that the industry abandoned decades ago.</p>
-    </div>
-
-    <div class="s-img lg center"><img src="studio/bath-chocolate.png" alt=""></div>
-
-    <div class="s-img sm off-left pull-up-sm"><img src="studio/basin-chocolate-pedestal.png" alt=""></div>
-
-    <div class="s-img md far-right"><img src="studio/basin-green-console.png" alt=""></div>
-
-    <div class="s-text t-left">
-      <p>We are always seeking new collaborations. If you are developing a space that deserves more than white porcelain, we would love to hear from you.</p>
-    </div>
-
-    <div class="s-img lg right"><img src="studio/bath-sand.png" alt=""></div>
-
+    <!-- CTA -->
     <div class="studio-cta">
-      <p class="studio-cta-label">Get in touch</p>
+      <p class="studio-cta-label">Interested in working together?</p>
       <div class="studio-contact-block">
         <p class="studio-contact-name">Theodor</p>
         <p class="studio-contact-email"><a href="mailto:theodor@deloubathrooms.com">theodor@deloubathrooms.com</a></p>
@@ -551,19 +646,48 @@
     });
   });
 
-  // Scroll reveal for studio elements
-  const imgObserver = new IntersectionObserver((entries) => {
+  // Scroll reveal for studio text blocks
+  const studioObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        imgObserver.unobserve(entry.target);
+        studioObserver.unobserve(entry.target);
       }
     });
-  }, { root: studioPage, rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+  }, { root: studioPage, rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
 
-  document.querySelectorAll('.s-img, .s-text, .s-quote').forEach((el, i) => {
-    el.style.transitionDelay = `${0.1}s`;
-    imgObserver.observe(el);
+  document.querySelectorAll('.s-text-block').forEach(el => {
+    studioObserver.observe(el);
+  });
+
+  // Auto-cycle product colors in each showcase
+  document.querySelectorAll('.showcase').forEach(showcase => {
+    const products = showcase.querySelectorAll('.showcase-product');
+    const dots = showcase.querySelectorAll('.showcase-dot');
+    let current = 0;
+    let interval = null;
+
+    function cycle() {
+      products[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (current + 1) % products.length;
+      products[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    // Start cycling when showcase is visible
+    const showcaseVis = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !interval) {
+          interval = setInterval(cycle, 3000);
+        } else if (!entry.isIntersecting && interval) {
+          clearInterval(interval);
+          interval = null;
+        }
+      });
+    }, { root: studioPage, threshold: 0.2 });
+
+    showcaseVis.observe(showcase);
   });
 </script>
 </body>
