@@ -154,16 +154,14 @@
 
   /* STUDIO */
   #studio {
-    justify-content: flex-start;
-    align-items: stretch;
+    display: block;
     overflow-y: auto;
-    position: relative;
+    position: absolute;
+    inset: 0;
   }
   .studio-wrap {
     position: relative; z-index: 1;
     width: 100%;
-    min-height: min-content;
-    flex-shrink: 0;
   }
 
   /* Hero section */
@@ -244,6 +242,7 @@
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
+    background: #0f0a07;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -253,9 +252,12 @@
     transform: translateY(0);
   }
   .studio-img-row.three img { aspect-ratio: 3/4; }
-  .studio-img-row.two img { aspect-ratio: 4/5; }
+  .studio-img-row.two img { aspect-ratio: 16/9; }
   .studio-img-row.two-one img,
   .studio-img-row.one-two img { aspect-ratio: auto; }
+
+  /* Spacer */
+  .studio-spacer { height: 4px; }
 
   /* Divider */
   .studio-divider {
@@ -476,7 +478,7 @@
       <img src="studio/bath-chocolate.png" alt="">
     </div>
 
-    <div style="height: 2rem;"></div>
+    <div class="studio-spacer"></div>
 
     <div class="studio-img-row two">
       <img src="studio/bath-sand.png" alt="">
