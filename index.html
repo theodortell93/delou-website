@@ -151,6 +151,156 @@
 
   /* CONTACT */
   #contact .center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+
+  /* STUDIO */
+  #studio {
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow-y: auto;
+    position: relative;
+  }
+  .studio-wrap {
+    position: relative; z-index: 1;
+    width: 100%;
+    min-height: min-content;
+    flex-shrink: 0;
+  }
+
+  /* Hero section */
+  .studio-hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  .studio-hero-grid {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 3px;
+  }
+  .studio-hero-grid img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.35);
+  }
+  .studio-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(26,17,12,0.4) 0%, rgba(26,17,12,0.8) 100%);
+    z-index: 1;
+  }
+  .studio-hero-text {
+    position: relative; z-index: 2;
+    max-width: 700px; padding: 0 2rem;
+  }
+  .studio-heading {
+    font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300;
+    color: #E8DECC; line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+  .studio-sub {
+    font-size: 1.15rem; font-weight: 300; font-style: italic;
+    color: rgba(232,222,204,0.6); margin-top: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Content sections */
+  .studio-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .studio-section p {
+    font-size: 1.15rem; font-weight: 300;
+    line-height: 1.9; color: rgba(232,222,204,0.8);
+    margin-bottom: 2rem;
+  }
+  .studio-section-label {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: rgba(196,169,125,0.6);
+    margin-bottom: 2rem;
+  }
+
+  /* Image rows */
+  .studio-img-row {
+    display: grid;
+    gap: 4px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .studio-img-row.three { grid-template-columns: 1fr 1fr 1fr; }
+  .studio-img-row.two { grid-template-columns: 1fr 1fr; }
+  .studio-img-row.two-one { grid-template-columns: 2fr 1fr; }
+  .studio-img-row.one-two { grid-template-columns: 1fr 2fr; }
+  .studio-img-row.full { grid-template-columns: 1fr; max-width: 900px; }
+  .studio-img-row img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .studio-img-row img.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .studio-img-row.three img { aspect-ratio: 3/4; }
+  .studio-img-row.two img { aspect-ratio: 4/5; }
+  .studio-img-row.two-one img,
+  .studio-img-row.one-two img { aspect-ratio: auto; }
+
+  /* Divider */
+  .studio-divider {
+    width: 50px; height: 1px;
+    background: rgba(196,169,125,0.3);
+    margin: 0 auto;
+  }
+
+  /* CTA */
+  .studio-cta {
+    text-align: center;
+    padding: 5rem 2rem 8rem;
+  }
+  .studio-cta-label {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: rgba(196,169,125,0.6);
+    margin-bottom: 2.5rem;
+  }
+  .studio-contact-block { margin-bottom: 1.8rem; }
+  .studio-contact-name {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(196,169,125,0.5); margin-bottom: 0.3rem;
+  }
+  .studio-contact-email a {
+    font-size: 1.15rem; font-weight: 300;
+    color: rgba(232,222,204,0.8); text-decoration: none;
+    transition: color 0.4s ease;
+    border-bottom: 1px solid rgba(196,169,125,0.2);
+    padding-bottom: 2px;
+  }
+  .studio-contact-email a:hover { color: #E8DECC; border-color: rgba(196,169,125,0.5); }
+
+  /* Pull quote */
+  .studio-pull-quote {
+    text-align: center;
+    padding: 5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .studio-pull-quote p {
+    font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 300; font-style: italic;
+    color: rgba(232,222,204,0.55); line-height: 1.5;
+  }
   .contact-heading {
     font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 300;
     color: #E8DECC; line-height: 1.3; margin-bottom: 3.5rem;
@@ -204,6 +354,7 @@
 <nav>
   <a class="nav-logo" data-page="home">Delou</a>
   <ul class="nav-links">
+    <li><a data-page="studio">Studio</a></li>
     <li><a data-page="about">About</a></li>
     <li><a data-page="contact">Contact</a></li>
   </ul>
@@ -239,6 +390,121 @@
   </div>
 </div>
 
+<!-- STUDIO -->
+<div class="page" id="studio">
+  <div class="studio-wrap">
+
+    <!-- Hero with image grid background -->
+    <div class="studio-hero">
+      <div class="studio-hero-grid">
+        <img src="studio/basin-chocolate-pedestal.png" alt="">
+        <img src="studio/bath-burgundy.png" alt="">
+        <img src="studio/toilet-green.png" alt="">
+        <img src="studio/basin-sand-console.png" alt="">
+        <img src="studio/colour-samples.png" alt="">
+        <img src="studio/toilet-sand.png" alt="">
+        <img src="studio/basin-burgundy-console.png" alt="">
+        <img src="studio/bath-green.png" alt="">
+      </div>
+      <div class="studio-hero-overlay"></div>
+      <div class="studio-hero-text">
+        <p class="page-label anim-fade">Delou Studio</p>
+        <h1 class="studio-heading anim-fade">Porcelain in colour for the spaces that matter.</h1>
+        <p class="studio-sub anim-fade">Collaborating with architects, designers, and developers across the Nordics.</p>
+      </div>
+    </div>
+
+    <!-- Intro text -->
+    <div class="studio-section">
+      <p class="studio-section-label">What we do</p>
+      <p>We partner with architects, interior designers, and property developers to bring coloured porcelain into the spaces they create — hotels, restaurants, residences, and beyond.</p>
+      <p>Delou offers the highest quality coloured bathroom porcelain available on the European market. Every fixture is designed with vintage proportions and produced to meet modern performance standards, in a palette the industry has long neglected.</p>
+    </div>
+
+    <!-- Image row: toilets -->
+    <div class="studio-img-row three">
+      <img src="studio/toilet-chocolate.png" alt="">
+      <img src="studio/toilet-burgundy.png" alt="">
+      <img src="studio/toilet-green.png" alt="">
+    </div>
+
+    <!-- Text section -->
+    <div class="studio-section">
+      <p class="studio-section-label">Hospitality & Residential</p>
+      <p>From boutique hotels seeking a signature bathroom identity to residential developments that refuse the ordinary — we work closely with your design team from specification to delivery.</p>
+      <p>Our fixtures are not accessories. They are architectural statements in porcelain — crafted to anchor a space, not merely fill it.</p>
+    </div>
+
+    <!-- Image row: basins pedestal -->
+    <div class="studio-img-row two">
+      <img src="studio/basin-burgundy-pedestal.png" alt="">
+      <img src="studio/basin-chocolate-pedestal.png" alt="">
+    </div>
+
+    <!-- Pull quote -->
+    <div class="studio-pull-quote">
+      <p>"The bathroom has been white for too long. We exist to change that."</p>
+    </div>
+
+    <!-- Image row: console basins -->
+    <div class="studio-img-row three">
+      <img src="studio/basin-sand-console.png" alt="">
+      <img src="studio/basin-burgundy-console.png" alt="">
+      <img src="studio/basin-green-console.png" alt="">
+    </div>
+
+    <!-- Text section -->
+    <div class="studio-section">
+      <p class="studio-section-label">The Palette</p>
+      <p>Deep chocolate, heritage green, burgundy, warm sand, classic white — each glaze is developed to carry depth and warmth that white porcelain simply cannot. Colours that respond to light, that age with grace, that belong in rooms designed with intention.</p>
+    </div>
+
+    <!-- Image row: colour samples wide -->
+    <div class="studio-img-row full">
+      <img src="studio/colour-samples.png" alt="">
+    </div>
+
+    <!-- Text section -->
+    <div class="studio-section">
+      <p class="studio-section-label">Bathtubs</p>
+      <p>Freestanding forms with generous proportions, produced in the same curated palette. Designed to be the centrepiece of any bathroom — not hidden away, but celebrated.</p>
+    </div>
+
+    <!-- Image row: baths -->
+    <div class="studio-img-row two">
+      <img src="studio/bath-burgundy.png" alt="">
+      <img src="studio/bath-chocolate.png" alt="">
+    </div>
+
+    <div style="height: 2rem;"></div>
+
+    <div class="studio-img-row two">
+      <img src="studio/bath-sand.png" alt="">
+      <img src="studio/bath-green.png" alt="">
+    </div>
+
+    <!-- Final text + CTA -->
+    <div class="studio-section">
+      <p>We are always seeking new collaborations and projects. If you are developing a space that deserves more than white porcelain, we would love to hear from you.</p>
+    </div>
+
+    <div class="studio-divider"></div>
+
+    <div class="studio-cta">
+      <p class="studio-cta-label">Get in touch</p>
+      <div class="studio-contact-block">
+        <p class="studio-contact-name">Theodor</p>
+        <p class="studio-contact-email"><a href="mailto:theodor@deloubathrooms.com">theodor@deloubathrooms.com</a></p>
+      </div>
+      <div class="studio-contact-block">
+        <p class="studio-contact-name">Victoria</p>
+        <p class="studio-contact-email"><a href="mailto:victoria@deloubathrooms.com">victoria@deloubathrooms.com</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- CONTACT -->
 <div class="page" id="contact">
   <div class="center">
@@ -262,10 +528,13 @@
   const links = document.querySelectorAll('[data-page]');
   const navEl = document.querySelector('nav');
   const aboutPage = document.getElementById('about');
+  const studioPage = document.getElementById('studio');
 
-  // Hide nav on scroll in About page
-  aboutPage.addEventListener('scroll', () => {
-    navEl.classList.toggle('hidden', aboutPage.scrollTop > 60);
+  // Hide nav on scroll in About and Studio pages
+  [aboutPage, studioPage].forEach(p => {
+    p.addEventListener('scroll', () => {
+      navEl.classList.toggle('hidden', p.scrollTop > 60);
+    });
   });
 
   function navigate(target) {
@@ -274,6 +543,7 @@
 
     // Reset scroll position on scrollable pages
     aboutPage.scrollTop = 0;
+    studioPage.scrollTop = 0;
 
     // Reset animations on all pages
     pages.forEach(p => {
@@ -301,6 +571,21 @@
       e.preventDefault();
       navigate(link.dataset.page);
     });
+  });
+
+  // Scroll reveal for studio images
+  const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        imgObserver.unobserve(entry.target);
+      }
+    });
+  }, { root: studioPage, rootMargin: '0px', threshold: 0.15 });
+
+  document.querySelectorAll('.studio-img-row img').forEach((img, i) => {
+    img.style.transitionDelay = `${(i % 3) * 0.15}s`;
+    imgObserver.observe(img);
   });
 </script>
 </body>
