@@ -165,84 +165,92 @@
     width: 100%;
   }
 
-  /* Fixed product background layer */
-  .studio-bg-layer {
-    position: fixed;
-    inset: 0;
+  /* Hero */
+  .studio-hero-top {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  .studio-hero-top h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300;
+    color: #E8DECC; line-height: 1.15;
+    letter-spacing: 0.02em; margin-bottom: 1.5rem;
+  }
+  .studio-hero-top .sub {
+    font-size: 1rem; font-weight: 300; font-style: italic;
+    color: rgba(232,222,204,0.4);
+  }
+  .studio-scroll-hint {
+    position: absolute; bottom: 3rem;
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(196,169,125,0.25);
+  }
+
+  /* Showcase section - sticky bg with text overlay */
+  .showcase {
+    position: relative;
+    min-height: 250vh;
+  }
+  .showcase-bg {
+    position: sticky;
+    top: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 0;
-    pointer-events: none;
+    overflow: hidden;
   }
-  .bg-product-group {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 1.5s ease;
-  }
-  .bg-product-group.active { opacity: 1; }
-  .bg-product-item {
+  .showcase-product {
     position: absolute;
     opacity: 0;
     transition: opacity 0.8s ease;
   }
-  .bg-product-item.active { opacity: 1; }
-  .bg-product-item img {
-    height: auto;
+  .showcase-product.active { opacity: 1; }
+  .showcase-product img {
+    max-height: 65vh;
+    width: auto;
+    max-width: 70vw;
     object-fit: contain;
-    filter: drop-shadow(0 10px 40px rgba(0,0,0,0.3));
-    opacity: 0.2;
+    filter: drop-shadow(0 10px 50px rgba(0,0,0,0.3));
+    opacity: 0.18;
   }
-  /* Positions and sizes for scattered background products */
-  .bg-product-item.pos-1 { top: 8%; left: 5%; }
-  .bg-product-item.pos-1 img { max-height: 45vh; }
-  .bg-product-item.pos-2 { top: 12%; right: 8%; }
-  .bg-product-item.pos-2 img { max-height: 55vh; }
-  .bg-product-item.pos-3 { bottom: 10%; left: 15%; }
-  .bg-product-item.pos-3 img { max-height: 35vh; }
-  .bg-product-item.pos-4 { bottom: 8%; right: 5%; }
-  .bg-product-item.pos-4 img { max-height: 40vh; }
-  .bg-product-item.pos-center { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  .bg-product-item.pos-center img { max-height: 70vh; }
+  .showcase-category {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.55rem; font-weight: 500;
+    letter-spacing: 0.5em; text-transform: uppercase;
+    color: rgba(196,169,125,0.18);
+  }
 
-  /* Flowing text layer */
-  .studio-flow {
+  /* Text that scrolls over the sticky bg */
+  .showcase-text {
     position: relative;
     z-index: 2;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 100vh 2.5rem 8rem;
+    margin-top: -100vh;
+    min-height: 250vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20vh 2rem;
   }
-  .studio-flow-hero {
-    text-align: center;
-    margin-bottom: 8rem;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid rgba(196,169,125,0.1);
+  .showcase-text-inner {
+    max-width: 600px;
+    width: 100%;
   }
-  .studio-flow-hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 300;
-    color: #E8DECC; line-height: 1.15;
-    letter-spacing: 0.02em;
-    margin-bottom: 1.5rem;
-  }
-  .studio-flow-hero .sub {
-    font-size: 1rem; font-weight: 300; font-style: italic;
-    color: rgba(232,222,204,0.4);
-  }
-  .studio-flow p {
+  .showcase-text-inner p {
     font-size: 1.2rem; font-weight: 300;
     line-height: 2; color: rgba(232,222,204,0.85);
     margin-bottom: 2.5rem;
   }
-  .studio-flow .spacer {
-    height: 4rem;
-  }
-  .studio-flow .pull-quote {
-    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  .showcase-text-inner .pull-quote {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
     font-weight: 300; font-style: italic;
     color: rgba(232,222,204,0.4);
     text-align: center;
@@ -252,13 +260,14 @@
     border-top: 1px solid rgba(196,169,125,0.08);
     border-bottom: 1px solid rgba(196,169,125,0.08);
   }
+  .showcase-text-inner .spacer { height: 6rem; }
 
-  /* CTA at bottom */
+  /* CTA */
   .studio-cta {
     text-align: center;
-    padding: 4rem 0 2rem;
-    border-top: 1px solid rgba(196,169,125,0.1);
-    margin-top: 4rem;
+    padding: 6rem 2rem 8rem;
+    border-top: 1px solid rgba(196,169,125,0.08);
+    position: relative; z-index: 2;
   }
   .studio-cta-label {
     font-size: 0.7rem; font-weight: 500;
@@ -298,8 +307,9 @@
   .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
   @media (max-width: 768px) {
-    .studio-flow { padding-top: 50vh; padding-left: 1.5rem; padding-right: 1.5rem; }
-    .bg-product-item img { opacity: 0.12; }
+    .showcase-product img { max-height: 50vh; opacity: 0.12; }
+    .showcase-text { padding: 15vh 1.5rem; }
+    .showcase-text-inner p { font-size: 1.05rem; }
 
     .hamburger { display: block; }
 
@@ -424,92 +434,112 @@
 <div class="page" id="studio">
   <div class="studio-wrap">
 
-    <!-- Fixed background layer with all products cycling -->
-    <div class="studio-bg-layer" id="studioBg">
-      <!-- Basins -->
-      <div class="bg-product-group active" data-group="basins">
-        <div class="bg-product-item pos-center active"><img src="studio/basin-chocolate-console.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/basin-burgundy-console.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/basin-sand-console.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/basin-green-console.png" alt=""></div>
+    <!-- Hero -->
+    <div class="studio-hero-top">
+      <p class="page-label anim-fade">Delou Studio</p>
+      <h1 class="anim-fade">Porcelain in colour for the spaces that matter.</h1>
+      <p class="sub anim-fade">Working with architects, designers, and developers.</p>
+      <p class="studio-scroll-hint anim-fade">Scroll to explore</p>
+    </div>
+
+    <!-- BASINS -->
+    <div class="showcase" data-category="basins">
+      <div class="showcase-bg">
+        <div class="showcase-product active"><img src="studio/basin-chocolate-console.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/basin-burgundy-console.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/basin-sand-console.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/basin-green-console.png" alt=""></div>
+        <span class="showcase-category">Basins</span>
       </div>
-      <!-- Toilets -->
-      <div class="bg-product-group" data-group="toilets">
-        <div class="bg-product-item pos-center active"><img src="studio/toilet-burgundy.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/toilet-chocolate.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/toilet-sand.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/toilet-green.png" alt=""></div>
-      </div>
-      <!-- High Cistern -->
-      <div class="bg-product-group" data-group="highcistern">
-        <div class="bg-product-item pos-center active"><img src="studio/highcistern-chocolate.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/highcistern-burgundy.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/highcistern-sand.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/highcistern-green.png" alt=""></div>
-      </div>
-      <!-- Pedestal Basins -->
-      <div class="bg-product-group" data-group="pedestals">
-        <div class="bg-product-item pos-center active"><img src="studio/basin-chocolate-pedestal.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/basin-burgundy-pedestal.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/basin-sand-pedestal.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/basin-green-pedestal.png" alt=""></div>
-      </div>
-      <!-- Bathtubs -->
-      <div class="bg-product-group" data-group="baths">
-        <div class="bg-product-item pos-center active"><img src="studio/bath-chocolate.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/bath-burgundy.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/bath-sand.png" alt=""></div>
-        <div class="bg-product-item pos-center"><img src="studio/bath-green.png" alt=""></div>
+      <div class="showcase-text">
+        <div class="showcase-text-inner">
+          <p>We partner with architects, interior designers, and property developers who understand that the bathroom is not an afterthought — it is architecture. Delou Studio exists to bring coloured porcelain into the spaces they create: hotels, restaurants, residences, and beyond.</p>
+          <p>The bathroom market has been dominated by white glazed porcelain for decades. Sterile, uninspired, and fundamentally disconnected from how we actually live. While every other room in the home has evolved into a curated sanctuary, the bathroom has been left behind.</p>
+        </div>
       </div>
     </div>
 
-    <!-- One big flowing text -->
-    <div class="studio-flow">
-      <div class="studio-flow-hero anim-fade">
-        <p class="page-label">Delou Studio</p>
-        <h1>Porcelain in colour for the spaces that matter.</h1>
-        <p class="sub">Working with architects, designers, and developers.</p>
+    <!-- TOILETS -->
+    <div class="showcase" data-category="toilets">
+      <div class="showcase-bg">
+        <div class="showcase-product active"><img src="studio/toilet-burgundy.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/toilet-chocolate.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/toilet-sand.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/toilet-green.png" alt=""></div>
+        <span class="showcase-category">Toilets</span>
       </div>
-
-      <p>We partner with architects, interior designers, and property developers who understand that the bathroom is not an afterthought — it is architecture. Delou Studio exists to bring coloured porcelain into the spaces they create: hotels, restaurants, residences, and beyond.</p>
-
-      <p>The bathroom market has been dominated by white glazed porcelain for decades. Sterile, uninspired, and fundamentally disconnected from how we actually live. While every other room in the home has evolved into a curated sanctuary, the bathroom has been left behind.</p>
-
-      <div class="spacer"></div>
-
-      <p>We set out to change that. Our collections draw on the rich heritage of European porcelain craft, reimagined for contemporary life. Each piece is produced by master artisans and arrives in colours that the industry abandoned long ago: deep chocolate, heritage green, burgundy, warm sand.</p>
-
-      <p>These are not decorative novelties. They are architectural fixtures — designed with vintage proportions and the detailing of an earlier era, paired with the performance and plumbing standards expected today.</p>
-
-      <p class="pull-quote">The bathroom has been white for too long. We exist to change that.</p>
-
-      <p>For hospitality projects, we work closely with your design team to develop a bathroom identity that reinforces the narrative of your space. A boutique hotel in Stockholm. A members' club in Copenhagen. A restaurant in Oslo. The bathroom should not break the spell — it should deepen it.</p>
-
-      <div class="spacer"></div>
-
-      <p>For residential projects, we consult on fixture selection, colour specification, and spatial composition. Whether it is a private home, an apartment, or an estate — we ensure the bathroom carries the same architectural intention as every other room.</p>
-
-      <p>For property developers building at scale, we offer volume supply and specification support. Differentiate your projects with bathroom environments that buyers and guests remember long after they leave.</p>
-
-      <div class="spacer"></div>
-
-      <p>Our range includes console and pedestal basins, close-coupled and high cistern toilets, and freestanding bathtubs — all available across our full colour palette. Every fixture is designed to be specified together, creating complete, cohesive bathroom environments.</p>
-
-      <p>We are always seeking new collaborations and projects. If you are developing a space that deserves more than white porcelain, we would love to hear from you.</p>
-
-      <div class="studio-cta">
-        <p class="studio-cta-label">Interested in working together?</p>
-        <div class="studio-contact-block">
-          <p class="studio-contact-name">Theodor</p>
-          <p class="studio-contact-email"><a href="mailto:theodor@deloubathrooms.com">theodor@deloubathrooms.com</a></p>
-        </div>
-        <div class="studio-contact-block">
-          <p class="studio-contact-name">Victoria</p>
-          <p class="studio-contact-email"><a href="mailto:victoria@deloubathrooms.com">victoria@deloubathrooms.com</a></p>
+      <div class="showcase-text">
+        <div class="showcase-text-inner">
+          <p>We set out to change that. Our collections draw on the rich heritage of European porcelain craft, reimagined for contemporary life. Each piece is produced by master artisans and arrives in colours that the industry abandoned long ago: deep chocolate, heritage green, burgundy, warm sand.</p>
+          <p class="pull-quote">The bathroom has been white for too long. We exist to change that.</p>
         </div>
       </div>
-
     </div>
+
+    <!-- HIGH CISTERN -->
+    <div class="showcase" data-category="highcistern">
+      <div class="showcase-bg">
+        <div class="showcase-product active"><img src="studio/highcistern-chocolate.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/highcistern-burgundy.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/highcistern-sand.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/highcistern-green.png" alt=""></div>
+        <span class="showcase-category">High Cistern</span>
+      </div>
+      <div class="showcase-text">
+        <div class="showcase-text-inner">
+          <p>For hospitality projects, we work closely with your design team to develop a bathroom identity that reinforces the narrative of your space. A boutique hotel in Stockholm. A members' club in Copenhagen. A restaurant in Oslo. The bathroom should not break the spell — it should deepen it.</p>
+          <p>For residential projects, we consult on fixture selection, colour specification, and spatial composition. Whether it is a private home, an apartment, or an estate — we ensure the bathroom carries the same architectural intention as every other room.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PEDESTAL BASINS -->
+    <div class="showcase" data-category="pedestals">
+      <div class="showcase-bg">
+        <div class="showcase-product active"><img src="studio/basin-chocolate-pedestal.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/basin-burgundy-pedestal.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/basin-sand-pedestal.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/basin-green-pedestal.png" alt=""></div>
+        <span class="showcase-category">Pedestal Basins</span>
+      </div>
+      <div class="showcase-text">
+        <div class="showcase-text-inner">
+          <p>For property developers building at scale, we offer volume supply and specification support. Differentiate your projects with bathroom environments that buyers and guests remember long after they leave.</p>
+          <p>Our range includes console and pedestal basins, close-coupled and high cistern toilets, and freestanding bathtubs — all available across our full colour palette. Every fixture is designed to be specified together, creating complete, cohesive bathroom environments.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATHTUBS -->
+    <div class="showcase" data-category="bathtubs">
+      <div class="showcase-bg">
+        <div class="showcase-product active"><img src="studio/bath-chocolate.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/bath-burgundy.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/bath-sand.png" alt=""></div>
+        <div class="showcase-product"><img src="studio/bath-green.png" alt=""></div>
+        <span class="showcase-category">Bathtubs</span>
+      </div>
+      <div class="showcase-text">
+        <div class="showcase-text-inner">
+          <p>These are not decorative novelties. They are architectural fixtures — designed with vintage proportions and the detailing of an earlier era, paired with the performance and plumbing standards expected today.</p>
+          <p>We are always seeking new collaborations and projects. If you are developing a space that deserves more than white porcelain, we would love to hear from you.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="studio-cta">
+      <p class="studio-cta-label">Interested in working together?</p>
+      <div class="studio-contact-block">
+        <p class="studio-contact-name">Theodor</p>
+        <p class="studio-contact-email"><a href="mailto:theodor@deloubathrooms.com">theodor@deloubathrooms.com</a></p>
+      </div>
+      <div class="studio-contact-block">
+        <p class="studio-contact-name">Victoria</p>
+        <p class="studio-contact-email"><a href="mailto:victoria@deloubathrooms.com">victoria@deloubathrooms.com</a></p>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -581,94 +611,31 @@
     });
   });
 
-  // Studio background cycling
-  const studioBg = document.getElementById('studioBg');
-  let bgColorInterval = null;
-  let bgGroupInterval = null;
+  // Auto-cycle colors in each showcase (every 1.8s)
+  document.querySelectorAll('.showcase').forEach(showcase => {
+    const products = showcase.querySelectorAll('.showcase-product');
+    let current = 0;
+    let interval = null;
 
-  if (studioBg) {
-    const groups = studioBg.querySelectorAll('.bg-product-group');
-    let currentGroup = 0;
-    let currentColor = 0;
-
-    // Cycle colors within active group (every 1.8s)
-    function cycleColor() {
-      const activeGroup = groups[currentGroup];
-      const items = activeGroup.querySelectorAll('.bg-product-item');
-      items[currentColor].classList.remove('active');
-      currentColor = (currentColor + 1) % items.length;
-      items[currentColor].classList.add('active');
+    function cycle() {
+      products[current].classList.remove('active');
+      current = (current + 1) % products.length;
+      products[current].classList.add('active');
     }
 
-    // Cycle product groups (every 7s)
-    function cycleGroup() {
-      groups[currentGroup].classList.remove('active');
-      currentColor = 0;
-      // Reset all items in old group
-      groups[currentGroup].querySelectorAll('.bg-product-item').forEach(i => i.classList.remove('active'));
-      currentGroup = (currentGroup + 1) % groups.length;
-      groups[currentGroup].classList.add('active');
-      groups[currentGroup].querySelector('.bg-product-item').classList.add('active');
-    }
-
-    // Start/stop based on studio page visibility
-    function startStudioBg() {
-      if (!bgColorInterval) {
-        bgColorInterval = setInterval(cycleColor, 1800);
-        bgGroupInterval = setInterval(cycleGroup, 7000);
-      }
-    }
-    function stopStudioBg() {
-      clearInterval(bgColorInterval);
-      clearInterval(bgGroupInterval);
-      bgColorInterval = null;
-      bgGroupInterval = null;
-    }
-
-    // Show/hide bg layer based on active page
-    const origNavigate = navigate;
-  }
-
-  // Override navigate to handle studio bg
-  const _nav = navigate;
-  navigate = function(target) {
-    _nav(target);
-    const bgLayer = document.getElementById('studioBg');
-    if (bgLayer) {
-      bgLayer.style.display = target === 'studio' ? '' : 'none';
-      if (target === 'studio') {
-        if (!bgColorInterval) {
-          bgColorInterval = setInterval(() => {
-            const groups = bgLayer.querySelectorAll('.bg-product-group');
-            let ag = bgLayer.querySelector('.bg-product-group.active');
-            let items = ag.querySelectorAll('.bg-product-item');
-            let cur = ag.querySelector('.bg-product-item.active');
-            let idx = Array.from(items).indexOf(cur);
-            cur.classList.remove('active');
-            items[(idx + 1) % items.length].classList.add('active');
-          }, 1800);
-          bgGroupInterval = setInterval(() => {
-            const groups = bgLayer.querySelectorAll('.bg-product-group');
-            let ag = bgLayer.querySelector('.bg-product-group.active');
-            let gIdx = Array.from(groups).indexOf(ag);
-            ag.classList.remove('active');
-            ag.querySelectorAll('.bg-product-item').forEach(i => i.classList.remove('active'));
-            let next = groups[(gIdx + 1) % groups.length];
-            next.classList.add('active');
-            next.querySelector('.bg-product-item').classList.add('active');
-          }, 7000);
+    const vis = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !interval) {
+          interval = setInterval(cycle, 1800);
+        } else if (!entry.isIntersecting && interval) {
+          clearInterval(interval);
+          interval = null;
         }
-      } else {
-        clearInterval(bgColorInterval);
-        clearInterval(bgGroupInterval);
-        bgColorInterval = null;
-        bgGroupInterval = null;
-      }
-    }
-  };
+      });
+    }, { root: studioPage, threshold: 0.1 });
 
-  // Hide bg layer initially
-  document.getElementById('studioBg').style.display = 'none';
+    vis.observe(showcase);
+  });
 
   // Hamburger menu toggle
   const hamburger = document.getElementById('hamburger');
@@ -679,7 +646,6 @@
     navLinksEl.classList.toggle('open');
   });
 
-  // Close menu when a link is clicked (mobile)
   navLinksEl.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       hamburger.classList.remove('open');
