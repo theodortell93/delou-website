@@ -187,7 +187,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .showcase-product.active { opacity: 1; }
+  .showcase-product.active { opacity: 0.35; }
   .showcase-product img {
     max-height: 65vh;
     width: auto;
@@ -243,11 +243,10 @@
 
   .s-text-block {
     max-width: 480px;
-    padding: 3rem;
-    background: rgba(26,17,12,0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(196,169,125,0.08);
+    padding: 2.5rem;
+    background: rgba(26,17,12,0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     margin-bottom: 40vh;
     opacity: 0;
     transform: translateY(30px);
@@ -521,6 +520,45 @@
     <!-- Quote -->
     <div class="s-quote-full">
       <p>"The bathroom has been white for too long. We exist to change that."</p>
+    </div>
+
+    <!-- HIGH CISTERN TOILETS showcase -->
+    <div class="showcase" data-category="highcistern">
+      <div class="showcase-bg">
+        <div class="showcase-product active" data-color="chocolate">
+          <img src="studio/highcistern-chocolate.png" alt="">
+          <span class="showcase-color-label">Chocolate</span>
+        </div>
+        <div class="showcase-product" data-color="burgundy">
+          <img src="studio/highcistern-burgundy.png" alt="">
+          <span class="showcase-color-label">Burgundy</span>
+        </div>
+        <div class="showcase-product" data-color="sand">
+          <img src="studio/highcistern-sand.png" alt="">
+          <span class="showcase-color-label">Sand</span>
+        </div>
+        <div class="showcase-product" data-color="green">
+          <img src="studio/highcistern-green.png" alt="">
+          <span class="showcase-color-label">Heritage Green</span>
+        </div>
+        <div class="showcase-dots">
+          <div class="showcase-dot active" style="background:#3D261A;"></div>
+          <div class="showcase-dot" style="background:#6B1A2A;"></div>
+          <div class="showcase-dot" style="background:#D4C4A8;"></div>
+          <div class="showcase-dot" style="background:#4A5A2A;"></div>
+        </div>
+        <span class="showcase-category">High Cistern</span>
+      </div>
+      <div class="showcase-text-layer">
+        <div class="s-text-block pos-right">
+          <span class="label">Heritage Craft</span>
+          <p>Our high cistern toilets bring the elegance of early twentieth-century European plumbing into contemporary spaces. Chain-pull mechanisms meet modern flush performance — a statement fixture for projects with character.</p>
+        </div>
+        <div class="s-text-block pos-left">
+          <span class="label">Always seeking new projects</span>
+          <p>If you are developing a space that deserves more than white porcelain — whether a single residence or a fifty-room hotel — we would love to hear from you.</p>
+        </div>
+      </div>
     </div>
 
     <!-- BATHTUBS showcase -->
