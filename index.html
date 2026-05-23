@@ -281,9 +281,52 @@
   }
   .studio-contact-email a:hover { color: #E8DECC; border-color: rgba(196,169,125,0.5); }
 
+  /* HAMBURGER - hidden on desktop */
+  .hamburger {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    padding: 0; z-index: 101;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 1px;
+    background: rgba(232,222,204,0.7);
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
   @media (max-width: 768px) {
     .studio-flow { padding-top: 50vh; padding-left: 1.5rem; padding-right: 1.5rem; }
     .bg-product-item img { opacity: 0.12; }
+
+    .hamburger { display: block; }
+
+    .nav-links {
+      position: fixed; inset: 0;
+      background: rgba(26,17,12,0.97);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 99;
+    }
+    .nav-links.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-links a {
+      font-size: 1.2rem;
+      letter-spacing: 0.35em;
+    }
+
+    nav { padding: 1.5rem 2rem; }
   }
   .contact-heading {
     font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 300;
@@ -337,7 +380,10 @@
 
 <nav>
   <a class="nav-logo" data-page="home">Delou</a>
-  <ul class="nav-links">
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a data-page="studio">Studio</a></li>
     <li><a data-page="about">About</a></li>
     <li><a data-page="contact">Contact</a></li>
@@ -623,6 +669,23 @@
 
   // Hide bg layer initially
   document.getElementById('studioBg').style.display = 'none';
+
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinksEl = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinksEl.classList.toggle('open');
+  });
+
+  // Close menu when a link is clicked (mobile)
+  navLinksEl.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinksEl.classList.remove('open');
+    });
+  });
 </script>
 </body>
 </html>
