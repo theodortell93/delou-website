@@ -152,130 +152,6 @@
   /* CONTACT */
   #contact .center { text-align: center; display: flex; flex-direction: column; align-items: center; }
 
-  /* STUDIO */
-  #studio {
-    display: block;
-    overflow-y: auto;
-    position: absolute;
-    inset: 0;
-    background: #1A110C;
-  }
-  .studio-wrap {
-    position: relative;
-    width: 100%;
-  }
-
-  /* Hero */
-  .studio-hero-top {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-  }
-  .studio-hero-top h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300;
-    color: #E8DECC; line-height: 1.15;
-    letter-spacing: 0.02em; margin-bottom: 1.5rem;
-  }
-  .studio-hero-top .sub {
-    font-size: 1rem; font-weight: 300; font-style: italic;
-    color: rgba(232,222,204,0.4);
-  }
-  .studio-scroll-hint {
-    position: absolute; bottom: 3rem;
-    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(196,169,125,0.25);
-  }
-
-  /* Catalog showcase section */
-  .showcase {
-    position: relative;
-    min-height: 150vh;
-  }
-  .showcase-bg {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow: hidden;
-  }
-  .showcase-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.2;
-    filter: brightness(0.8);
-  }
-
-  /* Text overlay */
-  .showcase-text {
-    position: relative;
-    z-index: 2;
-    margin-top: -100vh;
-    min-height: 150vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20vh 4rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .showcase-text-inner {
-    max-width: 520px;
-    width: 100%;
-  }
-  .showcase-text-inner p {
-    font-size: 1.2rem; font-weight: 300;
-    line-height: 2; color: rgba(232,222,204,0.85);
-    margin-bottom: 2.5rem;
-  }
-  .showcase-text-inner .pull-quote {
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-    font-weight: 300; font-style: italic;
-    color: rgba(232,222,204,0.4);
-    text-align: center;
-    line-height: 1.5;
-    padding: 3rem 0;
-    margin: 2rem 0;
-    border-top: 1px solid rgba(196,169,125,0.08);
-    border-bottom: 1px solid rgba(196,169,125,0.08);
-  }
-  /* Alternate text position per section */
-  .showcase:nth-child(odd) .showcase-text-inner { margin-left: auto; margin-right: 0; }
-  .showcase:nth-child(even) .showcase-text-inner { margin-right: auto; margin-left: 0; }
-
-  /* CTA */
-  .studio-cta {
-    text-align: center;
-    padding: 6rem 2rem 8rem;
-    border-top: 1px solid rgba(196,169,125,0.08);
-    position: relative; z-index: 2;
-  }
-  .studio-cta-label {
-    font-size: 0.7rem; font-weight: 500;
-    letter-spacing: 0.4em; text-transform: uppercase;
-    color: rgba(196,169,125,0.5);
-    margin-bottom: 2.5rem;
-  }
-  .studio-contact-block { margin-bottom: 1.8rem; }
-  .studio-contact-name {
-    font-size: 0.65rem; font-weight: 500;
-    letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(196,169,125,0.4); margin-bottom: 0.3rem;
-  }
-  .studio-contact-email a {
-    font-size: 1.1rem; font-weight: 300;
-    color: rgba(232,222,204,0.75); text-decoration: none;
-    transition: color 0.4s ease;
-    border-bottom: 1px solid rgba(196,169,125,0.15);
-    padding-bottom: 2px;
-  }
-  .studio-contact-email a:hover { color: #E8DECC; border-color: rgba(196,169,125,0.5); }
-
   /* HAMBURGER - hidden on desktop */
   .hamburger {
     display: none;
@@ -293,12 +169,6 @@
   .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
   @media (max-width: 768px) {
-    .showcase-bg img { opacity: 0.12; }
-    .showcase-text { padding: 15vh 1.5rem; }
-    .showcase-text-inner p { font-size: 1.05rem; }
-    .showcase:nth-child(odd) .showcase-text-inner,
-    .showcase:nth-child(even) .showcase-text-inner { margin: 0 auto; }
-
     .hamburger { display: block; }
 
     .nav-links {
@@ -382,7 +252,6 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="navLinks">
-    <li><a data-page="studio">Studio</a></li>
     <li><a data-page="about">About</a></li>
     <li><a data-page="contact">Contact</a></li>
   </ul>
@@ -418,75 +287,6 @@
   </div>
 </div>
 
-<!-- STUDIO -->
-<div class="page" id="studio">
-  <div class="studio-wrap">
-
-    <!-- Hero -->
-    <div class="studio-hero-top">
-      <p class="page-label anim-fade">Delou Studio</p>
-      <h1 class="anim-fade">Porcelain in colour for the spaces that matter.</h1>
-      <p class="sub anim-fade">Working with architects, designers, and developers.</p>
-      <p class="studio-scroll-hint anim-fade">Scroll to explore</p>
-    </div>
-
-    <!-- BASINS -->
-    <div class="showcase">
-      <div class="showcase-bg">
-        <img src="studio/catalog-basins.png" alt="">
-      </div>
-      <div class="showcase-text">
-        <div class="showcase-text-inner">
-          <p>We partner with architects, interior designers, and property developers who understand that the bathroom is not an afterthought — it is architecture. Delou Studio exists to bring coloured porcelain into the spaces they create: hotels, restaurants, residences, and beyond.</p>
-          <p>The bathroom market has been dominated by white glazed porcelain for decades. Sterile, uninspired, and fundamentally disconnected from how we actually live. While every other room in the home has evolved into a curated sanctuary, the bathroom has been left behind.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- TOILETS -->
-    <div class="showcase">
-      <div class="showcase-bg">
-        <img src="studio/catalog-toilets.png" alt="">
-      </div>
-      <div class="showcase-text">
-        <div class="showcase-text-inner">
-          <p>We set out to change that. Our collections draw on the rich heritage of European porcelain craft, reimagined for contemporary life. Each piece is produced by master artisans and arrives in colours that the industry abandoned long ago: deep chocolate, heritage green, burgundy, warm sand.</p>
-          <p class="pull-quote">The bathroom has been white for too long. We exist to change that.</p>
-          <p>For hospitality projects, we work closely with your design team to develop a bathroom identity that reinforces the narrative of your space. A boutique hotel in Stockholm. A members' club in Copenhagen. A restaurant in Oslo. The bathroom should not break the spell — it should deepen it.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- BATHTUB -->
-    <div class="showcase">
-      <div class="showcase-bg">
-        <img src="studio/catalog-bathtub.png" alt="">
-      </div>
-      <div class="showcase-text">
-        <div class="showcase-text-inner">
-          <p>For residential projects, we consult on fixture selection, colour specification, and spatial composition. Whether it is a private home, an apartment, or an estate — we ensure the bathroom carries the same architectural intention as every other room.</p>
-          <p>For property developers building at scale, we offer volume supply and specification support. Differentiate your projects with bathroom environments that buyers and guests remember long after they leave.</p>
-          <p>We are always seeking new collaborations and projects. If you are developing a space that deserves more than white porcelain, we would love to hear from you.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="studio-cta">
-      <p class="studio-cta-label">Interested in working together?</p>
-      <div class="studio-contact-block">
-        <p class="studio-contact-name">Theodor</p>
-        <p class="studio-contact-email"><a href="mailto:theodor@deloubathrooms.com">theodor@deloubathrooms.com</a></p>
-      </div>
-      <div class="studio-contact-block">
-        <p class="studio-contact-name">Victoria</p>
-        <p class="studio-contact-email"><a href="mailto:victoria@deloubathrooms.com">victoria@deloubathrooms.com</a></p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
 <!-- CONTACT -->
 <div class="page" id="contact">
   <div class="center">
@@ -510,13 +310,10 @@
   const links = document.querySelectorAll('[data-page]');
   const navEl = document.querySelector('nav');
   const aboutPage = document.getElementById('about');
-  const studioPage = document.getElementById('studio');
 
-  // Hide nav on scroll in About and Studio pages
-  [aboutPage, studioPage].forEach(p => {
-    p.addEventListener('scroll', () => {
-      navEl.classList.toggle('hidden', p.scrollTop > 60);
-    });
+  // Hide nav on scroll in About page
+  aboutPage.addEventListener('scroll', () => {
+    navEl.classList.toggle('hidden', aboutPage.scrollTop > 60);
   });
 
   function navigate(target) {
@@ -525,7 +322,6 @@
 
     // Reset scroll position on scrollable pages
     aboutPage.scrollTop = 0;
-    studioPage.scrollTop = 0;
 
     // Reset animations on all pages
     pages.forEach(p => {
